@@ -3,7 +3,7 @@
 		<title>Track a Workout</title>
 		<link rel="stylesheet" href="css/workoutStyle.css">
         <link rel="stylesheet" href="css/sharedStyle.css">
-        <link rel="stylesheet" href="css/dashboardStyle.css">
+        <!-- <link rel="stylesheet" href="css/dashboardStyle.css"> -->
 
 	</head>
 	<body>
@@ -16,7 +16,8 @@
                 <a href="dashboard.html" class = "profileButt">
                     <img src="images/userIcon.png">
                 </a>
-                <a href="login.html" class="logoutButt">Logout</a>
+                <!-- <a href="login.html" class="logoutButt">Logout</a> -->
+                <button class="logoutButt" onclick="window.location.href='login.html'">Logout</button>
             </div>
         </header>
         <div class="workoutHeading">
@@ -24,14 +25,104 @@
         </div>
         <div class="searchBar">
             <img src="images/magnifyingGlass.png">
-            <h2>Search an exercise to add to workout</h2>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder= "Search an exercise to add to workout"
+            >
+            <!-- <h2>Search an exercise to add to workout</h2> -->
         </div>
-        <div class="menuBtn">
+        <div id= "exerciseSearch" class="exerciseSearch">
+        </div>
+
+
+        <!-- <div class="menuBtn">
             <img src="images/menuButt.png" >
 
-
-        </div>
+        </div> -->
         <img class="menuBtn" src="images/menuButt.png" >
+        <script id="exerciseData" type="application/json">
+        {
+            "exercises": [
+            {"id": 1,"name": "squat", "type": "resistance training"},
+            {"id": 2, "name": "dumbell squat", "type": "resistance training"},
+            {"id": 3, "name": "pull up", "type": "resistance training"},
+            {"id": 4, "name": "pushup", "type": "resistance training"},
+            {"id": 5, "name": "run", "type": "cardiovsascular training"},
+            {"id": 5, "name": "walk", "type": "cardiovsascular training"}
+            ]
+        }
+        </script>
+        <script>
+
+  // Parse JSON embedded in the HTML
+  const exerciseJSON = document.getElementById('exerciseData').textContent;
+  const exercises = JSON.parse(exerciseJSON).exercises;
+
+  const exerciseInput = document.getElementById('searchInput');
+  const exerciseSearch = document.getElementById('exerciseSearch');
+  
+  // Clear placeholder when user clicks on the box (focus)
+  exerciseInput.addEventListener('focus', () => {
+    exerciseInput.placeholder = '';
+    // If there’s text already typed, re-show the box
+    if (exerciseInput.value.trim() !== '' && exerciseSearch.innerHTML.trim() !== '') {
+      exerciseSearch.style.display = 'block';
+    }
+  });
+
+  // Restore placeholder when they click away and the box is empty (blur)
+  exerciseInput.addEventListener('blur', () => {
+    if (exerciseInput.value === '') {
+      exerciseInput.placeholder = 'Search an exercise to add to workout';
+    }
+  });
+
+  // Filter and show exercise matches as user types
+  exerciseInput.addEventListener('input', () => {
+    const query = exerciseInput.value.toLowerCase().trim();
+
+    // If empty, results box
+    if (query === '') {
+      exerciseSearch.style.display = 'none';
+      exerciseSearch.innerHTML = '';
+      return;
+    }
+
+    const filtered = exercises.filter(ex => 
+      ex.name.toLowerCase().includes(query)
+    );
+
+    displayResults(filtered);
+  });
+
+  // Display results dynamically
+  function displayResults(results) {
+    exerciseSearch.innerHTML = '';
+
+    if (results.length === 0) {
+      exerciseSearch.innerHTML = '<p class="noResults">No exercise matches your search</p>';
+    } else {
+      results.forEach(ex => {
+        const div = document.createElement('div');
+        div.classList.add('exerciseResult');
+        div.textContent = `${ex.name} (${ex.type})`;
+        exerciseSearch.appendChild(div);
+      });
+    }
+    // Always show box when displaying results
+    exerciseSearch.style.display = 'block';
+  }
+
+  // Hide results when clicking outside
+  document.addEventListener('click', (event) => {
+    const isClickInside = exerciseInput.contains(event.target) || exerciseSearch.contains(event.target);
+    if (!isClickInside) {
+      exerciseSearch.style.display = 'none';
+    }
+  });
+</script>
+
 
 	</body>
 
