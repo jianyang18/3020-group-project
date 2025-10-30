@@ -77,8 +77,8 @@ body {
 
 .menuBtn {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  right: 20px;
   width: 150px;
   height: 150px;
 }
@@ -116,6 +116,45 @@ body {
     margin-right: 10;
     margin-bottom: 10;
     object-fit: contain;
+}
+
+.searchBar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.exerciseSearch {
+  width: 50%;
+  margin: 1 auto;
+  background-color: var(--colour-background);
+  /* border-radius: 8px; */
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+  max-height: 300px;
+  overflow-y: auto;
+  /* padding: 10px; */
+    outline-color: var(--colour-background-dark);
+    outline-style: solid;
+    outline-width: thin;
+}
+
+.exerciseResult {
+  padding: 8px;
+  /* border-bottom: 1px solid var(--colour-background-dark); */
+  cursor: pointer;
+}
+
+.exerciseResult:hover {
+  background-color: var(--colour-background-dark);
+}
+
+.noResults {
+  color: var(--colour-text);
+  opacity: 0.7;
+  text-align: center;
+  padding: 10px;
 }
 
 
