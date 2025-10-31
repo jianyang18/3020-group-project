@@ -17,7 +17,7 @@
                     <img src="images/userIcon.png">
                 </a>
                 <!-- <a href="login.html" class="logoutButt">Logout</a> -->
-                <button class="logoutButt" onclick="window.location.href='login.html'">Logout</button>
+                <button class="logoutButt" onclick="window.location.href='index.html'">Logout</button>
             </div>
         </header>
         <div class="workoutHeading">
@@ -150,8 +150,10 @@
   div.classList.add('exerciseBox');
   div.setAttribute('data-name', exerciseName);
 
+    let setNum = 0;
   for(let i = 0; i< 3; i++){ //create set 1-3
-    
+    setNum = i;
+
 
   }
   const label = document.createElement('label');
