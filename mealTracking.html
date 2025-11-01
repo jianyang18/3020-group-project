@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MealTrackingPage</title>
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+		<link rel="stylesheet" href="./css/mealTracking.css" />
+		<link rel="stylesheet" href="./css/palette.css" />
+	</head>
+	<body>
+		<!-- topBar -->
+		<header class="topBar">
+			<div>
+				<img src="images/activ8logo.png" />
+				<h1 class="appName">Activ8</h1>
+			</div>
+			<div class="rightButts">
+				<a href="dashboard.html" class="profileButt">
+					<img src="images/userIcon.png" />
+				</a>
+				<!-- <a href="login.html" class="logoutButt">Logout</a> -->
+				<button class="logoutButt" onclick="window.location.href='login.html'">Logout</button>
+			</div>
+		</header>
+
+		<!-- main mealTracking section -->
+		<h2 class="welcome-msg">Track a Meal</h2>
+		<main class="app">
+			<div class="overview">
+				<div class="date-container">
+					<span class="material-symbols-outlined"> arrow_back </span>
+					<p class="date"><span class="material-symbols-outlined"> calendar_month </span> TODAY, Oct. 31</p>
+					<span class="material-symbols-outlined"> arrow_forward </span>
+				</div>
+				<div class="meals">
+					<div class="meal meal-breakfast">breakfast</div>
+					<div class="meal meal-lunch">lunch</div>
+					<div class="meal meal-dinner">dinner</div>
+					<div class="meal meal-snack">snack</div>
+				</div>
+			</div>
+			<div class="side-panel">
+				<div class="side-panel-item progress-circle-container">
+					<svg width="250" height="250" viewBox="0 0 250 250" class="circular-progress" style="--progress: 75">
+						<circle class="bg"></circle>
+						<circle class="fg"></circle>
+					</svg>
+					<div class="circular-progress-toggle-bar">
+						<div class="toggle-bar-item toggle-bar-item-calories selected">calories</div>
+						<div class="toggle-bar-item toggle-bar-item-fat">fat</div>
+						<div class="toggle-bar-item toggle-bar-item-protein">protein</div>
+						<div class="toggle-bar-item toggle-bar-item-carbs">carbs</div>
+					</div>
+				</div>
+				<div class="side-panel-item btn set-goal-btn">
+					set-goal-btn <br />
+					(to be implemented)
+				</div>
+				<div class="side-panel-item menu-grid">
+					menu-grid <br />
+					(to be implemented)
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
