@@ -1,6 +1,6 @@
 @import url("palette.css");
 
-body {          /* removes default margin so positioning is accurate */
+body {
   overflow: hidden;
 }
 
