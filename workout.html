@@ -10,7 +10,7 @@
 		<header class="topBar">
             <div>
                 <img src="images/activ8logo.png">
-                <h1 class="appName">Activ8</h1>
+                <h1 >Activ8</h1>
             </div>
             <div class="rightButts">
                 <a href="dashboard.html" class = "profileButt">
@@ -54,11 +54,12 @@
         
 
 
-        <!-- <div class="menuBtn">
-            <img src="images/menuButt.png" >
+        <!-- <div class="submitBtn">
+            submit
 
         </div> -->
-        <img class="menuBtn" src="images/menuButt.png" >
+        <button class="submitBtn" onclick="window.location.href='dashboard.html'">submit</button>
+        <img class="menuBtn" src="images/MenuButtLabelled.png" >
         <script id="exerciseData" type="application/json">
         {
             "exercises": [
@@ -67,7 +68,9 @@
             {"id": 3, "name": "pull up", "type": "resistance training"},
             {"id": 4, "name": "pushup", "type": "resistance training"},
             {"id": 5, "name": "run", "type": "cardiovsascular training"},
-            {"id": 5, "name": "walk", "type": "cardiovsascular training"}
+            {"id": 5, "name": "walk", "type": "cardiovsascular training"},
+            {"id": 6, "name": "bike", "type": "cardiovsascular training"}
+            
             ]
         }
         </script>
@@ -129,7 +132,7 @@
 
         // When user clicks on an exercise, collapse search
         div.addEventListener('click', () => {
-          addExerciseBox(ex.name);
+          addExerciseBox(ex.name, ex.type);
           exerciseInput.value = ''; // clear search bar
           exerciseSearch.innerHTML = ''; // hide results
           exerciseSearch.style.display = 'none';
@@ -142,29 +145,69 @@
   }
 
   //  Function to create exercise box under search
-  function addExerciseBox(exerciseName) {
+  function addExerciseBox(exerciseName, exerciseType) {
   const wrapper = document.createElement('div');
-  wrapper.classList.add('exerciseWrapper'); // contains the box + reps label
+  wrapper.classList.add('exerciseWrapper'); // contains the box + labels
 
-  const div = document.createElement('div');
-  div.classList.add('exerciseBox');
-  div.setAttribute('data-name', exerciseName);
+  const box = document.createElement('div');
+  box.classList.add('exerciseBox');
+  box.setAttribute('data-name', exerciseName);
+
+  const labelsContainer = document.createElement('div');
+  labelsContainer.classList.add('labelsContainer');
 
 
-    let setNum = 0;
+    // For resistance exercises
+if (exerciseType.toLowerCase().includes('resistance')) {
+  for (let i = 1; i <= 3; i++) {
+    const setRow = document.createElement('div');
+    setRow.classList.add('setRow');
 
+    const setLabel = document.createElement('div');
+    setLabel.classList.add('setLabel');
+    setLabel.textContent = `Set ${i}`;
 
-  for(let i = 1; i< 4; i++){ //create set 1-3
-    setNum = i;
+    const repsLabel = document.createElement('label');
+    repsLabel.textContent = 'Reps';
+    repsLabel.classList.add('inputLabel');
 
-  
-  const label = document.createElement('label');
-  label.textContent = `Set ${setNum}`;
-  label.classList.add('setsLabel');
+    const repsInput = document.createElement('input');
+    repsInput.type = 'number';
+    repsInput.min = 0;
+    repsInput.placeholder = '--';
+    repsInput.classList.add('smallInput');
 
-  wrapper.appendChild(div);
-  wrapper.appendChild(label);
+    const weightLabel = document.createElement('label');
+    weightLabel.textContent = 'Weight';
+    weightLabel.classList.add('inputLabel');
+
+    const weightInput = document.createElement('input');
+    weightInput.type = 'number';
+    weightInput.min = 0;
+    weightInput.placeholder = '--';
+    weightInput.classList.add('smallInput');
+
+    setRow.appendChild(setLabel);
+    setRow.appendChild(repsLabel);
+    setRow.appendChild(repsInput);
+    setRow.appendChild(weightLabel);
+    setRow.appendChild(weightInput);
+
+    labelsContainer.appendChild(setRow);
   }
+  } else if (exerciseType.toLowerCase().includes('cardio')) {
+    // For cardiovascular exercises
+    const labels = ['Duration', 'Time', 'Avg Speed'];
+    labels.forEach(labelText => {
+      const label = document.createElement('div');
+      label.classList.add('cardioLabel');
+      label.textContent = labelText;
+      labelsContainer.appendChild(label);
+    });
+  }
+
+  wrapper.appendChild(box);
+  wrapper.appendChild(labelsContainer);
   resistanceFields.appendChild(wrapper);
   }
 
