@@ -44,16 +44,16 @@
 }
 .submitBtn {
     position: fixed;
-    width: 5%;
-    height: 5%;
+    width: 7%;
+    height: 7%;
     bottom: 3%;
-    right: 150px;
+    right: 2%;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     color: var(--colour-background);
     background-color: var(--colour-primary-dark);
 }
@@ -150,9 +150,8 @@
   margin-left: 150px; 
 }
 
-/* Shared label style */
-.setLabel,
-.cardioLabel {
+/* Set label style */
+.setLabel{
   font-size: 15px;
   font-weight: bold;
   color: var(--colour-text, #222);
@@ -181,7 +180,7 @@
   color: var(--colour-text, #222);
 }
 
-/* Input box styling */
+/* Weights Input box styling */
 .smallInput {
   width: 55px;
   height: 22px;
@@ -197,6 +196,43 @@
   box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
 }
 
+.cardioInput {
+      width: 250px;
+  height: 25px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  /* padding-left: 5px; */
+  justify-items: end;
+  font-size: 14px;
+}
+
+.cardioInput:focus {
+  outline: none;
+  border-color: var(--colour-accent, #007BFF);
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
+}
+
+.dataWrapper {
+      margin-top: 5px;
+  display: flex;
+  margin-left: 0;
+  /* flex-direction: column; */
+  gap: 5px;
+  align-items: center; /* keeps input vertically aligned with label */
+  background-color: var(--colour-background-dark);
+  padding-right: 11px;
+  padding: 5px;
+
+
+}
+
+.cardioLabel {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--colour-text, #222);
+  margin-left: 5px;
+  width: 130px;
+}
 
 
 
