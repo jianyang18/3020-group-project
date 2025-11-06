@@ -159,6 +159,10 @@ li {
 
 .meal-section-food-items {
 	flex: 2;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 	border-bottom-left-radius: 1rem;
 	border-bottom-right-radius: 1rem;
 	background-color: #fffffff4;
@@ -198,6 +202,31 @@ li {
 
 .food-item-delete-btn:hover {
 	color: #f1750998;
+}
+
+.food-list-add-food-btn-container {
+	width: 80%;
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 3rem;
+	color: #fff;
+	background-color: #3f4373;
+	cursor: pointer;
+}
+
+.food-list-add-food-btn-container:hover {
+	background-color: #f1750998;
+	color: #fff;
+}
+
+.add-food-btn {
+	margin-right: 1rem;
+}
+
+.add-food-btn-text {
+	font-size: 1.5rem;
 }
 
 .side-panel {
