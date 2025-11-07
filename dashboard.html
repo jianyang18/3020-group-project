@@ -9,8 +9,8 @@
 		<link rel="stylesheet" href="./css/dashboard.css" />
 		<link rel="stylesheet" href="./css/palette.css" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-    <link rel="stylesheet" href="./css/dashboardStyle.css" />
-    <link rel="stylesheet" href="./css/sharedStyle.css" />
+		<link rel="stylesheet" href="./css/dashboardStyle.css" />
+		<link rel="stylesheet" href="./css/sharedStyle.css" />
 	</head>
 	<body>
 		<!-- topBar -->
@@ -31,16 +31,11 @@
 		<!-- navBar -->
 		<!-- integrate with Anna's code later -->
 		<div class="navBar">
-			<!-- <button id="mealTrackingBtn">Track a Meal</button>
-			<button id="trackAWorkoutBtn">Track a Workout</button>
-			<button id="communityPageBtn">Community Page</button>
-			<button id="createAPostBtn">Create a Post</button> -->
-
 			<a href="./dashboard.html" class="navbar-link selected">Dashboard</a>
 			<a href="./mealTracking.html" class="navbar-link">Track a Meal</a>
 			<a href="./workout.html" class="navbar-link">Track a Workout</a>
-			<a href="./workout.html" class="navbar-link">Community Page</a>
-			<a href="./workout.html" class="navbar-link">Create a Post</a>
+			<a href="./community.html" class="navbar-link">Community Page</a>
+			<a href="./createPost.html" class="navbar-link">Create a Post</a>
 		</div>
 
 		<!-- Main DashBoard section -->
@@ -196,34 +191,4 @@
 			</div>
 		</main>
 	</body>
-
-    <script>
-      const username = sessionStorage.getItem('username');
-      const greeting = document.getElementById('greetingMsg');
-      let menuVisible = false;
-  
-      if(username){
-        greeting.textContent = `Welcome to the Dashboard ${username} !`;
-      } else {
-        greeting.textContent = "Welcome to the Dashboard";
-      }
-  
-      document.getElementById("mealTrackingBtn").addEventListener("click", () => {
-        window.location.href = "mealTracking.html";
-      });
-  
-      document.getElementById("trackAWorkoutBtn").addEventListener("click", () => {
-        window.location.href = "workout.html";
-      });
-  
-      document.getElementById("communityPageBtn").addEventListener("click", () => {
-        //window.location.href = "";
-      });
-  
-      document.getElementById("createAPostBtn").addEventListener("click", () => {
-        //window.location.href = "";
-      });
-    </script>
-	</body>
-	
 </html>
