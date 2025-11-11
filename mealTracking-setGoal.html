@@ -40,11 +40,11 @@
 			<!-- Left: main contents -->
 			<div class="panel">
 				<div class="panel-item panel-set-calory">
-					<span class="panel-item-title">set calory:</span>
+					<span class="panel-item-title">set calorie:</span>
 					<input type="text" class="panel-item-input panel-item-input-calory" placeholder="Enter your target calory" />
 				</div>
 				<div class="panel-item panel-set-macro">
-					<span class="panel-item-title">set macro:</span>
+					<span class="panel-item-title">set macros:</span>
 					<div class="panel-item-input-macro-container">
 						<div class="panel-item-input-item panel-item-input-macro-carbs">
 							<div class="panel-item-input-item-title">Carbs:</div>
@@ -74,23 +74,23 @@
 			</div>
 		</div>
 
-    <script>
-      document.getElementById("mealTrackingBtn").addEventListener("click", () => {
-        window.location.href = "mealTracking.html";
-      });
-  
-      document.getElementById("trackAWorkoutBtn").addEventListener("click", () => {
-        window.location.href = "workout.html";
-      });
-  
-      document.getElementById("communityPageBtn").addEventListener("click", () => {
-        window.location.href = "community.html";
-      });
-  
-      document.getElementById("createAPostBtn").addEventListener("click", () => {
-        sessionStorage.setItem("makeAPostFlag", true);
-        window.location.href = "community.html";
-      });
-    </script>
+		<script>
+			document.getElementById('mealTrackingBtn').addEventListener('click', () => {
+				window.location.href = 'mealTracking.html';
+			});
+
+			document.getElementById('trackAWorkoutBtn').addEventListener('click', () => {
+				window.location.href = 'workout.html';
+			});
+
+			document.getElementById('communityPageBtn').addEventListener('click', () => {
+				window.location.href = 'community.html';
+			});
+
+			document.getElementById('createAPostBtn').addEventListener('click', () => {
+				sessionStorage.setItem('makeAPostFlag', true);
+				window.location.href = 'community.html';
+			});
+		</script>
 	</body>
 </html>

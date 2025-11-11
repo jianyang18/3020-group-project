@@ -54,6 +54,13 @@ li {
 	background: var(--colour-primary);
 	border-radius: 3rem;
 	padding: 2rem;
+	max-height: 49.5rem;
+	overflow: scroll;
+}
+
+.panel::-webkit-scrollbar {
+	width: 0rem;
+	height: 0rem;
 }
 
 /* search */
@@ -112,10 +119,18 @@ li {
 	gap: 1.8rem;
 }
 
+.grid-message {
+	font-size: 1.6rem;
+	text-align: center;
+	padding: 3rem 1rem;
+	color: var(--colour-primary-dark);
+}
+
 .card {
 	background: var(--colour-background);
 	border-radius: 16px;
-	min-height: 16rem;
+	height: 16rem;
+	width: 30rem;
 	padding: 1.4rem;
 	position: relative;
 	display: flex;
@@ -127,6 +142,11 @@ li {
 	font-size: 2rem;
 }
 
+.card .serving {
+	font-size: 1.3rem;
+	color: #4b5563;
+}
+
 .card-main-section {
 	display: flex;
 	justify-content: space-between;
@@ -134,14 +154,24 @@ li {
 }
 
 .nutrition-fact {
+	flex: 1;
+	margin-left: 2rem;
 	font-size: 1.5rem;
-	line-height: 2;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+}
+
+.nutrition-fact-item {
+	display: flex;
+	width: 11rem;
+	justify-content: space-between;
 }
 
 .food-img {
 	width: 50%;
+	max-width: 10rem;
+	max-height: 10rem;
 }
 
 .card .plus {
@@ -159,6 +189,10 @@ li {
 }
 
 .card .plus:hover {
+	background-color: #fa7602;
+}
+
+.card .plus.selected {
 	background-color: #fa7602;
 }
 

@@ -98,6 +98,7 @@ a {
 	text-align: center;
 	background-color: var(--colour-green);
 	border-radius: 1rem;
+	width: 20rem;
 }
 
 .meal-section {
@@ -261,11 +262,11 @@ a {
 
 /**************** progress circle starts ****************/
 .circular-progress {
+	position: relative;
 	width: 20rem;
 	height: 20rem;
 	display: block;
-	padding: 2rem 0 0 2rem;
-	--size: 20rem;
+	--size: 25rem;
 	--half-size: calc(var(--size) / 2);
 	--stroke-width: 2.5rem;
 	--radius: calc((var(--size) - var(--stroke-width)) / 2);
@@ -291,10 +292,27 @@ a {
 	stroke: var(--colour-green);
 }
 /**************** progress circle ends ****************/
+.progress-circle-wrapper {
+	position: relative;
+}
+
+.progress-circle-text {
+	font-family: 'Silkscreen', monospace;
+	font-size: 2rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 .circular-progress-toggle-bar {
 	width: 100%;
 	height: 3rem;
+	margin-top: 3rem;
 	margin-bottom: 1rem;
 	display: flex;
 	justify-content: space-around;
@@ -324,6 +342,11 @@ a {
 	background-color: var(--colour-primary-dark);
 }
 
+.toggle-bar-item:hover {
+	background-color: var(--colour-primary-dark);
+	color: #fff;
+}
+
 .set-goal-btn-container {
 	display: flex;
 	flex-direction: column;
@@ -341,7 +364,7 @@ a {
 	background-color: var(--colour-primary-dark);
 	font-size: 1.5rem;
 
-	padding: 0 3rem;
+	margin-top: 5rem;
 	border-radius: 10rem;
 }
 
