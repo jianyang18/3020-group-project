@@ -24,6 +24,10 @@ const setValueCalorie = document.querySelector('.circular-value-calorie');
 const setValueFat = document.querySelector('.circular-value-fat');
 const setValueProtein = document.querySelector('.circular-value-protein');
 const setValueCarbs = document.querySelector('.circular-value-carbs');
+const goalCalorieLabel = document.querySelector('.progress-circle-goal-label-calorie');
+const goalFatLabel = document.querySelector('.progress-circle-goal-label-fat');
+const goalProteinLabel = document.querySelector('.progress-circle-goal-label-protein');
+const goalCarbsLabel = document.querySelector('.progress-circle-goal-label-carbs');
 
 // #----------- CONSTS -----------#
 const PROGRESS_GOAL_DEFAULT = 2000;
@@ -36,6 +40,25 @@ const MEAL_SECTION_SELECTORS = {
 };
 
 // #----------- functions -----------#
+function initializeSomeSessionStorageLOL() {
+	if (!sessionStorage.getItem('nutritionGoal')) {
+		sessionStorage.setItem(
+			'nutritionGoal',
+			JSON.stringify({calorieGoal: 2000, carbGoal: 130, proteinGoal: 56, fatsGoal: 60})
+		);
+	}
+
+	if (!sessionStorage.getItem('dailyTotals')) {
+		sessionStorage.setItem('dailyTotals', JSON.stringify({calories: 0, carbs: 0, protein: 0, fats: 0}));
+	}
+
+	if (!sessionStorage.getItem('pendingFood')) {
+		sessionStorage.setItem('pendingFood', '[]');
+	}
+}
+
+initializeSomeSessionStorageLOL();
+
 /**
  * * Update counts, macros, and item list for each meal block.
  * * @param {string} mealKey
@@ -152,15 +175,23 @@ function renderMealsForDate(dateStr) {
 
 function updateProgressCircles(totals = {calories: 0, fats: 0, protein: 0, carbs: 0}) {
 	const {calories, fats, protein, carbs} = totals;
-	const calorieGoal = Number(setValueCalorie?.dataset?.goal) || PROGRESS_GOAL_DEFAULT;
-	const fatGoal = Number(setValueFat?.dataset?.goal) || PROGRESS_GOAL_DEFAULT;
-	const proteinGoal = Number(setValueProtein?.dataset?.goal) || PROGRESS_GOAL_DEFAULT;
-	const carbsGoal = Number(setValueCarbs?.dataset?.goal) || PROGRESS_GOAL_DEFAULT;
+
+	const nutritionGoal = JSON.parse(sessionStorage.getItem('nutritionGoal'));
+	const calorieGoal = Number(nutritionGoal.calorieGoal) || PROGRESS_GOAL_DEFAULT;
+	const fatGoal = Number(nutritionGoal.fatsGoal) || PROGRESS_GOAL_DEFAULT;
+	const proteinGoal = Number(nutritionGoal.proteinGoal) || PROGRESS_GOAL_DEFAULT;
+	const carbsGoal = Number(nutritionGoal.carbGoal) || PROGRESS_GOAL_DEFAULT;
 
 	if (calorieLabel) calorieLabel.textContent = calories;
 	if (fatLabel) fatLabel.textContent = fats;
 	if (proteinLabel) proteinLabel.textContent = protein;
 	if (carbsLabel) carbsLabel.textContent = carbs;
+
+	// update the UI for goals
+	goalCalorieLabel.innerHTML = calorieGoal;
+	goalFatLabel.innerHTML = fatGoal;
+	goalProteinLabel.innerHTML = proteinGoal;
+	goalCarbsLabel.innerHTML = carbsGoal;
 
 	if (setValueCalorie) setValueCalorie.style.setProperty('--progress', Math.min((calories / calorieGoal) * 100, 100));
 	if (setValueFat) setValueFat.style.setProperty('--progress', Math.min((fats / fatGoal) * 100, 100));
@@ -239,6 +270,7 @@ addFoodSnackBtn.addEventListener('click', () => {
 });
 
 // this logic I got help from my Friend, thank you Linpu
+// it's for deleting the food item, I had some trouble with it
 document.addEventListener('click', (event) => {
 	const deleteBtn = event.target.closest('.delete-food-item-btn');
 	if (!deleteBtn) return;
