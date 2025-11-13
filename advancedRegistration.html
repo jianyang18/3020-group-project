@@ -4,12 +4,12 @@
 		<link rel="stylesheet" href="css/registrationStyle.css">
 	</head>
     <body>
-      <div class="register">
-        <input id="birthdayInput" type="date" placeholder="birthday">
-        <input id="heightInput" type="number" inputmode="numeric" placeholder="height (ie 178cm)" min="0" max="1000">
-        <input id="weightInput" type="number" inputmode="numeric" placeholder="weight (ie 76kg)" min="0" max="1000">
-        <input id="goalWeightInput" type="number" inputmode="numeric" placeholder="goal weight (ie 76kg)" min="0" max="1000">
-        <input id="activityDayInput" type="number" inputmode="numeric" placeholder="activity days per week (ie 3)" min="1" max="7">
+      <div id="inputForm" class="register">
+        <input id="birthdayInput" type="date" autocomplete="off" placeholder="birthday">
+        <input id="heightInput" type="number" autocomplete="off" inputmode="numeric" placeholder="height (ie 178cm)" min="0" max="1000">
+        <input id="weightInput" type="number" autocomplete="off" inputmode="numeric" placeholder="weight (ie 76kg)" min="0" max="1000">
+        <input id="goalWeightInput" type="number" autocomplete="off" inputmode="numeric" placeholder="goal weight (ie 76kg)" min="0" max="1000">
+        <input id="activityDayInput" type="number" autocomplete="off" inputmode="numeric" placeholder="activity days per week (ie 3)" min="1" max="7">
         <div class="button">
           <button id="submitBtn">
             Finish Setup

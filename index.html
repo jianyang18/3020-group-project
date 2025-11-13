@@ -9,10 +9,10 @@
 			<h1>Activ8</h1>
 		</div>
 
-		<div class="login">
+		<div id="inputForm" class="login">
 			<div>
-				<input id="usernameInput" placeholder="username">
-				<input id="passwordInput" type="password" placeholder="password">
+				<input id="usernameInput" autocomplete="off" placeholder="username">
+				<input id="passwordInput" autocomplete="off" type="password" placeholder="password">
 			</div>
 			<button id="loginBtn">Log-in</button>
 			<button id="registerBtn">Register</button>
@@ -51,6 +51,15 @@
 
     const warning = document.getElementById("warning");
     const warningMsg = document.getElementById("warningMsg");
+
+    function wipeUserData(){
+      sessionStorage.removeItem("birthday");
+      sessionStorage.removeItem("height");
+      sessionStorage.removeItem("weight");
+      sessionStorage.removeItem("goalWeight");
+      sessionStorage.removeItem("activityDays");
+    }
+    wipeUserData();
 
     function inputsValid(){
       const username = usernameInput.value.trim();
