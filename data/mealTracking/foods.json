@@ -33,7 +33,7 @@
 		"fats": 3.6,
 		"protein": 31,
 		"label": ["favorite"],
-		"image": "./images/mealTracking/food-img/fried_chicken.png"
+		"image": "./images/mealTracking/food-img/friedchicken.png"
 	},
 	{
 		"id": 4,
@@ -45,7 +45,7 @@
 		"fats": 0.8,
 		"protein": 2.6,
 		"label": ["favorite"],
-		"image": "./images/mealTracking/food-img/brown_rice.png"
+		"image": "./images/mealTracking/food-img/brownrice.png"
 	},
 	{
 		"id": 5,
@@ -117,6 +117,6 @@
 		"fats": 0.4,
 		"protein": 10,
 		"label": ["favorite"],
-		"image": "./images/mealTracking/food-img/greek_yogurt.png"
+		"image": "./images/mealTracking/food-img/greekyogurt.png"
 	}
 ]

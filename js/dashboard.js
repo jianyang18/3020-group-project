@@ -203,7 +203,7 @@ function updateLastMeal() {
 		const lastFoodIndex = pendingFoods.length - 1;
 		foodName = pendingFoods[lastFoodIndex].name.toLowerCase();
 		// console.log(foodName);
-		imgPath = `${IMAGE_PATH_PREFIX}${foodName}.png`;
+		imgPath = `${IMAGE_PATH_PREFIX}${foodName.replace(' ', '')}.png`;
 		calorieCount = pendingFoods[lastFoodIndex].calories;
 		console.log(calorieCount);
 	}
