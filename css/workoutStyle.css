@@ -6,9 +6,22 @@
 }
 
 .workoutHeading h2 {
-  font-size: 30px;
+  font-size: 2.4rem;
+	margin: 2rem;
   color: var(--colour-primary-dark);
-  margin: 20px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+.dateLabel {
+  font-size: 1.8rem;
+	margin: 1rem;
+  color: var(--colour-primary-dark);
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
 }
 
 .searchBar {
@@ -19,7 +32,7 @@
     text-align: center;
     justify-content: left;
     align-items: center;
-    position: static;
+    position: relative;
     outline-style: solid;
     outline-color: var(--colour-primary);
     background-color: var(--colour-background);
@@ -42,6 +55,38 @@
   font-size: 16px;
   background-color: transparent;
 }
+
+.exerciseSearch {
+  position: absolute;
+  width: 100%;
+  background-color: var(--colour-background);
+  max-height: 300px;
+  overflow-y: auto;
+  top: calc(100% + 5px);
+  outline-color: var(--colour-background-dark);
+  outline-style: solid;
+  outline-width: thin;
+  text-align: left;
+  z-index: 1000;
+}
+
+.exerciseResult {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.exerciseResult:hover {
+  background-color: var(--colour-background-dark);
+}
+
+/* no exercise match box */
+.noResults {
+  color: var(--colour-text);
+  opacity: 0.7;
+  text-align: center;
+  padding: 10px;
+}
+
 .submitBtn {
     position: fixed;
     width: 7%;
@@ -58,87 +103,100 @@
     background-color: var(--colour-primary-dark);
 }
 
-.exerciseSearch {
-  width: 50%;
-  margin: 1 auto;
-  background-color: var(--colour-background);
-  /* border-radius: 8px; */
-  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
-  max-height: 300px;
-  overflow-y: auto;
-  /* padding: 10px; */
-    outline-color: var(--colour-background-dark);
-    outline-style: solid;
-    outline-width: thin;
+.submitBtn:hover {
+  background-color: var(--colour-accent-background);
 }
 
-.exerciseResult {
-  padding: 8px;
-  /* border-bottom: 1px solid var(--colour-background-dark); */
-  cursor: pointer;
+/* Container for both left and right columns */
+.fieldsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px; /* space between left and right columns */
+  padding-top: 10px;
+  width: 80%;
+  background-color: var(--colour-green);
+  border-radius: 8px;
+  margin-top: 0px;
+
 }
 
-.exerciseResult:hover {
-  background-color: var(--colour-background-dark);
+.outerFieldsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px; /* space between left and right columns */
+  margin-top: 40px;
+  /* background-color: var(--colour-green); */
 }
 
-.noResults {
-  color: var(--colour-text);
-  opacity: 0.7;
-  text-align: center;
-  padding: 10px;
+/* Left and right columns */
+.leftFields,
+.rightFields {
+  flex: 1;
+  max-width: 450px;
+  min-height: 400px;
 }
 
+/* Optional: keep them visually centered and spaced */
+.leftFields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.rightFields {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.rightExerciseContainer{
+    display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* wrapper for exercise and labels */
 .exerciseWrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* keeps label aligned left */
   margin-bottom: 20px;
+  width: 100%;
+
 }
 
 .exerciseBox {
-    width: 400px;
+    width: 100%;
     height: 50px;
     outline-color: var(--colour-background-dark);
     outline-style: solid;
     outline-width: thin;
-    margin-left: 150px;
     margin-top: 30px;
-    /* font-size: 20px; */
-    /* display: flex; */
-    align-items: flex-end;
+    position: relative;
+    align-items: center;
+    display: flex;
     background-color: var(--colour-background);
 }
 
-/* Inner text inside the box */
 .exerciseBox::after {
-  content: attr(data-name); /* use JS to set this attr */
-  position: absolute;
-  /* bottom: 10px;    distance from bottom */ 
-  left: 160px;     /* slight offset from left edge */
+  content: attr(data-name); 
   font-size: 20px;
   font-weight: 600;
-  align-items: flex-end;
-    margin-top: 12px;
-
+  padding-left: 10px;
   color: var(--colour-primary-dark, #333);
 }
 
+
 .setsContainer {
-  margin-top: 8px;
+  margin-top: 5px;
   display: flex;
-  margin-left: 150px;
+  /* margin-left: 150px; */
   flex-direction: column;
   gap: 4px;
 }
-
-/* .setsLabel {
-  margin-top: 6px;
-  /* margin-left: 150px; 
-  font-size: 15px;
-  color: var(--colour-text, #222);
-
-} */
 
 
 /* Container for labels below box */
@@ -147,7 +205,8 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-left: 150px; 
+  width: 100%;
+  /* margin-left: 150px;  */
 }
 
 /* Set label style */
@@ -167,8 +226,9 @@
   /* margin-left: 5px; */
   background-color: var(--colour-background-dark);
   padding: 5px;
-  padding-right: 62px;
-  padding-left: 15px;
+  /* padding-right: 62px; */
+  /* padding-left: 15px; */
+  width: 441px;
   /* outline: thin solid var(--colour-background-dark);
   outline-offset: 5px; */
   /* outline-color: var(--colour-primary-dark); */
@@ -183,11 +243,13 @@
 /* Weights Input box styling */
 .smallInput {
   width: 55px;
-  height: 22px;
+  height: 25px;
   border: 1px solid #ccc;
   border-radius: 6px;
   /* padding-left: 5px; */
   font-size: 14px;
+  justify-items: end;
+
 }
 
 .smallInput:focus {
@@ -197,7 +259,7 @@
 }
 
 .cardioInput {
-      width: 250px;
+  width: 100%;
   height: 25px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -212,18 +274,19 @@
   box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
 }
 
+/*wrapper for cardio data */
 .dataWrapper {
-      margin-top: 5px;
+  margin-top: 5px;
   display: flex;
   margin-left: 0;
   /* flex-direction: column; */
-  gap: 5px;
+  /* gap: 5px; */
   align-items: center; /* keeps input vertically aligned with label */
   background-color: var(--colour-background-dark);
-  padding-right: 11px;
+  /* padding-right: 11px; */
   padding: 5px;
-
-
+  width: 441px;
+  
 }
 
 .cardioLabel {
@@ -231,7 +294,7 @@
   font-weight: bold;
   color: var(--colour-text, #222);
   margin-left: 5px;
-  width: 130px;
+  width: 100%;
 }
 
 .commentContainer {
@@ -240,23 +303,27 @@
     flex-direction: column;
     gap: 4px;
     right: 150px; 
+    width: 100%;
 }
 
 .commentLabel {
-    right: 150px;
+  right: 150px;
+    font-size: 20px;
+  font-weight: 600;
+  /* padding-left: 10px; */
+  color: var(--colour-primary-dark, #333);
+
 }
 
 .commentBox {
-    width: 400px;
-    height: 300px;
-    border-style:thin;
+  width: 100%;
+  height: 300px;
+  border-style:thin;
+  background-color: var(--colour-background);
 }
 
 
 
 
 
-/* .logout-btn:hover {
-  background-color: var(--colour-accent);
-} */
 

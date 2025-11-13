@@ -30,20 +30,34 @@
 		</div>
 
 		<div class="workoutHeading">
-			<h2>Track a Workout</h2>
+			<h2>Dashboard >> Track a Workout</h2>
 		</div>
-		<div class="searchBar">
-			<img src="images/magnifyingGlass.png" />
-			<input type="text" id="searchInput" placeholder="Search an exercise to add to workout" />
-		</div>
-		<div id="exerciseSearch" class="exerciseSearch"></div>
+		<label class="dateLabel"> </label>
+		<div class="searchContainer">
+			<!-- <label class="dateLabel"> </label> -->
+			<div class="searchBar">
+				<img src="images/magnifyingGlass.png" />
+				<input type="text" id="searchInput" placeholder="Search an exercise to add to workout" />
+				<div id="exerciseSearch" class="exerciseSearch"></div>
 
-		<div class="resistanceFields">
-			<!-- comment box -->
-			<!-- <div class="commentContainer">
-            <label class="commentLabel">Personal Comment:</label>
-            <div class="commentBox"> </div>
-        </div> -->
+			</div>
+		</div>
+
+		<div class="outerFieldsContainer">
+		<div class="fieldsContainer">
+			<div class="leftFields">
+			</div>
+			<div class = "rightFields">
+				<div class="rightExerciseContainer"> </div>
+				<div class="commentContainer">
+					<label class="commentLabel">Personal Comment:</label>
+				<textarea type = text class="commentBox" placeholder="Write your personal comment"> </textarea>
+					
+       		</div>
+			</div>
+		</div>
+
+
 		</div>
 		<button class="submitBtn" onclick="window.location.href='dashboard.html'">submit</button>
 		<!-- <img class="menuBtn" src="images/MenuButtLabelled.png" > -->
@@ -74,7 +88,9 @@
 
 			const exerciseInput = document.getElementById('searchInput');
 			const exerciseSearch = document.getElementById('exerciseSearch');
-			const resistanceFields = document.querySelector('.resistanceFields');
+			const leftFields = document.querySelector('.leftFields');
+			const rightExerciseContainer = document.querySelector('.rightExerciseContainer'); // new reference
+
 
 			// Clear placeholder when user clicks on the box (focus)
 			exerciseInput.addEventListener('focus', () => {
@@ -126,6 +142,7 @@
 							exerciseInput.value = ''; // clear search bar
 							exerciseSearch.innerHTML = ''; // hide results
 							exerciseSearch.style.display = 'none';
+							exerciseInput.placeholder = 'Search an exercise to add to workout';
 						});
 
 						exerciseSearch.appendChild(div);
@@ -134,85 +151,104 @@
 				exerciseSearch.style.display = 'block';
 			}
 
-			//  Function to create exercise box under search
-			function addExerciseBox(exerciseName, exerciseType) {
-				const wrapper = document.createElement('div');
-				wrapper.classList.add('exerciseWrapper'); // contains the box + labels
+			//  Function to log exercises under search
 
-				const box = document.createElement('div');
-				box.classList.add('exerciseBox');
-				box.setAttribute('data-name', exerciseName);
 
-				const labelsContainer = document.createElement('div');
-				labelsContainer.classList.add('labelsContainer');
+		let firstExerciseType = null; // Track the first exercise type added
 
-				// For resistance exercises
-				if (exerciseType.toLowerCase().includes('resistance')) {
-					for (let i = 1; i <= 3; i++) {
-						const setRow = document.createElement('div');
-						setRow.classList.add('setRow');
+		function addExerciseBox(exerciseName, exerciseType) {
+			const wrapper = document.createElement('div');
+			wrapper.classList.add('exerciseWrapper'); // contains the box + labels
 
-						const setLabel = document.createElement('div');
-						setLabel.classList.add('setLabel');
-						setLabel.textContent = `Set ${i}`;
+			const box = document.createElement('div');
+			box.classList.add('exerciseBox');
+			box.setAttribute('data-name', exerciseName);
 
-						const repsLabel = document.createElement('label');
-						repsLabel.textContent = 'Reps';
-						repsLabel.classList.add('inputLabel');
+			const labelsContainer = document.createElement('div');
+			labelsContainer.classList.add('labelsContainer');
 
-						const repsInput = document.createElement('input');
-						repsInput.type = 'number';
-						repsInput.min = 0;
-						repsInput.placeholder = '--';
-						repsInput.classList.add('smallInput');
+			const typeLower = exerciseType.toLowerCase();
 
-						const weightLabel = document.createElement('label');
-						weightLabel.textContent = 'Weight';
-						weightLabel.classList.add('inputLabel');
-
-						const weightInput = document.createElement('input');
-						weightInput.type = 'number';
-						weightInput.min = 0;
-						weightInput.placeholder = '--';
-						weightInput.classList.add('smallInput');
-
-						setRow.appendChild(setLabel);
-						setRow.appendChild(repsLabel);
-						setRow.appendChild(repsInput);
-						setRow.appendChild(weightLabel);
-						setRow.appendChild(weightInput);
-
-						labelsContainer.appendChild(setRow);
-					}
-				} else if (exerciseType.toLowerCase().includes('cardio')) {
-					// For cardiovascular exercises
-					const labels = ['Distance (km)', 'Time (min)', 'Avg Speed (min/km)'];
-					// const cardioData = documnet.createElement('div'); //div for all cardio data
-					labels.forEach((labelText) => {
-						const dataWrapper = document.createElement('div'); //div for each row
-						dataWrapper.classList.add('dataWrapper');
-
-						const label = document.createElement('label'); //label inside each row
-						label.classList.add('cardioLabel');
-						label.textContent = labelText;
-
-						const cardioInput = document.createElement('input'); //input inside each row
-						cardioInput.classList.add('cardioInput');
-						cardioInput.type = 'number';
-						cardioInput.min = 0;
-						cardioInput.placeholder = 'enter value';
-
-						dataWrapper.appendChild(label);
-						dataWrapper.appendChild(cardioInput);
-
-						labelsContainer.appendChild(dataWrapper);
-					});
-				}
-
-				wrapper.appendChild(box);
-				wrapper.appendChild(labelsContainer);
-				resistanceFields.appendChild(wrapper);
+			// Determine column placement
+			let targetColumn;
+			if (!firstExerciseType) {
+				// First exercise added
+				firstExerciseType = typeLower;
+				targetColumn = leftFields; // first type goes to left
+			} else {
+				// If same type as first, keep in left, else go to right
+				targetColumn = (typeLower === firstExerciseType) ? leftFields : rightExerciseContainer;
 			}
+
+			if (typeLower.includes('resistance')) {
+				for (let i = 1; i <= 3; i++) {
+					const setRow = document.createElement('div');
+					setRow.classList.add('setRow');
+
+					const setLabel = document.createElement('div');
+					setLabel.classList.add('setLabel');
+					setLabel.textContent = `Set ${i}`;
+
+					const repsLabel = document.createElement('label');
+					repsLabel.textContent = 'Reps';
+					repsLabel.classList.add('inputLabel');
+
+					const repsInput = document.createElement('input');
+					repsInput.type = 'number';
+					repsInput.min = 0;
+					repsInput.placeholder = '--';
+					repsInput.classList.add('smallInput');
+
+					const weightLabel = document.createElement('label');
+					weightLabel.textContent = 'Weight';
+					weightLabel.classList.add('inputLabel');
+
+					const weightInput = document.createElement('input');
+					weightInput.type = 'number';
+					weightInput.min = 0;
+					weightInput.placeholder = '--';
+					weightInput.classList.add('smallInput');
+
+					const unitLabel = document.createElement('label');
+					unitLabel.textContent = 'kg';
+					unitLabel.classList.add('inputLabel');
+
+					setRow.appendChild(setLabel);
+					setRow.appendChild(repsLabel);
+					setRow.appendChild(repsInput);
+					setRow.appendChild(weightLabel);
+					setRow.appendChild(weightInput);
+					setRow.appendChild(unitLabel);
+
+					labelsContainer.appendChild(setRow);
+				}
+			} else if (typeLower.includes('cardio')) {
+				const labels = ['Distance (km)', 'Time (min)', 'Avg Speed (min/km)'];
+				labels.forEach((labelText) => {
+					const dataWrapper = document.createElement('div');
+					dataWrapper.classList.add('dataWrapper');
+
+					const label = document.createElement('label');
+					label.classList.add('cardioLabel');
+					label.textContent = labelText;
+
+					const cardioInput = document.createElement('input');
+					cardioInput.classList.add('cardioInput');
+					cardioInput.type = 'text';
+					cardioInput.min = 0;
+					cardioInput.placeholder = 'enter value';
+
+					dataWrapper.appendChild(label);
+					dataWrapper.appendChild(cardioInput);
+
+					labelsContainer.appendChild(dataWrapper);
+				});
+			}
+
+			wrapper.appendChild(box);
+			wrapper.appendChild(labelsContainer);
+			targetColumn.appendChild(wrapper); // append to left or right column
+		}
 
 			// Hide results when clicking outside
 			document.addEventListener('click', (event) => {
@@ -221,6 +257,16 @@
 					exerciseSearch.style.display = 'none';
 				}
 			});
+			// --- Display today's date ---
+			const dateLabel = document.querySelector('.dateLabel');
+			const today = new Date();
+
+			const formattedDate = today.toLocaleDateString('en-US', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric'
+			});
+  			dateLabel.textContent = `Today's workout: ${formattedDate}`;
 		</script>
 	</body>
 </html>
