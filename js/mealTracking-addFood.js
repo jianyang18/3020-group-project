@@ -11,7 +11,7 @@ const mealTypeLabel = document.querySelector('.welcome-msg-meal-type');
 const dateLabel = document.querySelector('.welcome-msg-date');
 
 // #----------- CONSTS -----------#
-const FOOD_DATA_URL = './data/mealTracking/foods.json';
+const FOOD_DATA = Array.isArray(window.MEAL_TRACKING_FOODS) ? window.MEAL_TRACKING_FOODS : [];
 const DEFAULT_FOOD_IMAGE = './images/mealTracking/food-img/apple.png';
 
 // #----------- FUNCTIONS -----------#
@@ -22,15 +22,15 @@ const DEFAULT_FOOD_IMAGE = './images/mealTracking/food-img/apple.png';
 function renderFoods(filterFn = () => true) {
 	grid.innerHTML = ''; // clear existing cards
 
-	fetch(FOOD_DATA_URL)
-		.then((res) => res.json())
-		.then((data) => {
-			data
-				.filter(filterFn) // apply filter (for filtered rendering)
-				.forEach((food) => {
-					grid.insertAdjacentHTML(
-						'beforeend',
-						`<div class="card">
+	if (!FOOD_DATA.length) {
+		grid.insertAdjacentHTML('beforeend', '<p class="empty-state">No foods available.</p>');
+		return;
+	}
+
+	FOOD_DATA.filter(filterFn).forEach((food) => {
+		grid.insertAdjacentHTML(
+			'beforeend',
+			`<div class="card">
 						<div class="title food-name">${food.name}</div>
 						<div class="card-main-section">
 							<img src="${food.image || DEFAULT_FOOD_IMAGE}" alt="${food.name}" class="food-img" />
@@ -69,10 +69,8 @@ function renderFoods(filterFn = () => true) {
 							</button>
 						</div>
 						</div>`
-					);
-				});
-		})
-		.catch((err) => console.error('Error loading foods:', err));
+		);
+	});
 }
 
 function updateMealType() {
