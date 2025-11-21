@@ -96,6 +96,7 @@ body {
 
   min-height: 320px; /* consistent height */
   height: auto; /* allow vertical growth if needed */
+  min-width: 750px;
 }
 
 /* Username header bar */
